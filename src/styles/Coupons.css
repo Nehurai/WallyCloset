@@ -1,0 +1,77 @@
+.coupons-page {
+  background-color: #f9fafb;
+  min-height: 100vh;
+  padding: 20px 16px 90px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.coupons-title {
+  text-align: center;
+  font-size: 22px;
+  color: #10b981;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.coupons-empty {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  margin-top: 40px;
+}
+
+.coupon-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.coupon-card {
+  background-color: #ffffff;
+  padding: 16px;
+  border-left: 6px solid #10b981;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.coupon-card h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #111827;
+}
+
+.coupon-card p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #374151;
+}
+
+.expiry {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  font-size: 13px;
+  z-index: 50;
+}
+
+.bottom-nav a {
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.bottom-nav a.active {
+  color: #10b981;
+  font-weight: 600;
+}

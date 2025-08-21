@@ -1,0 +1,91 @@
+.my-swaps-page {
+  background-color: #f9fafb;
+  min-height: 100vh;
+  padding: 20px 16px 90px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.my-swaps-title {
+  text-align: center;
+  font-size: 22px;
+  color: #2563eb;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.my-swaps-empty {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  margin-top: 40px;
+}
+
+.my-swaps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.swap-card {
+  background-color: #ffffff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.swap-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.swap-info h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: #1f2937;
+}
+
+.status {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.status.pending {
+  color: #f59e0b;
+}
+
+.status.accepted {
+  color: #10b981;
+}
+
+.status.rejected {
+  color: #ef4444;
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  font-size: 13px;
+  z-index: 50;
+}
+
+.bottom-nav a {
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.bottom-nav a.active {
+  color: #2563eb;
+  font-weight: 600;
+}

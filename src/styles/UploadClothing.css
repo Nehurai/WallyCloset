@@ -1,0 +1,12 @@
+.upload-form {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.upload-form input,
+.upload-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}

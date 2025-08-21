@@ -1,0 +1,78 @@
+.swap-page {
+  background: #f9fafb;
+  min-height: 100vh;
+  padding: 30px 20px 90px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.swap-title {
+  text-align: center;
+  font-size: 24px;
+  color: #1d4ed8;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.swap-empty {
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  margin-top: 40px;
+}
+
+.swap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 18px;
+}
+
+.swap-card {
+  background-color: #fff;
+  border-left: 4px solid #8b5e3c;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  padding: 12px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.swap-card:hover {
+  transform: translateY(-4px);
+}
+
+.swap-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.swap-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.swap-tag {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+.swap-btn {
+  padding: 8px 14px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.swap-btn:hover {
+  background-color: #1e3a8a;
+}

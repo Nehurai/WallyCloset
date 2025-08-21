@@ -1,0 +1,177 @@
+.closet-page {
+  background: #f9fafb;
+  min-height: 100vh;
+  padding: 0 16px 100px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Banner with Image */
+.closet-banner {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 20px 0;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.closet-banner-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  opacity: 0.8;
+}
+
+.closet-banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #1d4ed8;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.closet-banner-text h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.closet-banner-text p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: #444;
+}
+
+.closet-filters {
+  margin: 16px 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  background-color: #e5e7eb;
+  border: none;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #374151;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #d1d5db;
+}
+
+.filter-btn.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+.closet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+}
+
+.closet-card {
+  background-color: white;
+  border-left: 4px solid #8b5e3c;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  padding: 12px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.closet-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.closet-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.closet-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.closet-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.closet-tag {
+  background-color: #f3f4f6;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.closet-date {
+  font-style: italic;
+}
+
+.closet-add-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background-color: #2563eb;
+  color: white;
+  font-size: 28px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 52px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  text-decoration: none;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 999;
+}
+
+.closet-add-btn:hover {
+  transform: scale(1.1);
+  background-color: #1e3a8a;
+}
+
+.closet-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  font-size: 13px;
+  z-index: 50;
+}
+
+.closet-nav a {
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.closet-nav a.active {
+  color: #1d4ed8;
+  font-weight: 600;
+}
