@@ -23,8 +23,9 @@ export default function Signup() {
     try {
       await signup(email, password);
       navigate("/home");
-    } catch (err: any) {
-      alert("Signup failed: " + err.message);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Please try again.";
+      setError(`Signup failed: ${message}`);
     }
   };
 
@@ -49,7 +50,7 @@ export default function Signup() {
         />
         <input
         type = "password"
-        placeholder="confirm Password"
+        placeholder="Confirm password"
         value = {confirm}
         required
         onChange={(e) => setConfirm(e.target.value)}

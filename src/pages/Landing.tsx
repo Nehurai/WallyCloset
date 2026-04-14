@@ -6,7 +6,7 @@ export default function Landing() {
     <div className="landing">
       <div className="landing-box">
         <img
-          src= "https://cdn-icons-png.flaticon.com/512/9028/9028444.png"
+          src="https://cdn-icons-png.flaticon.com/512/9028/9028444.png"
           alt="WallyCloset Logo"
           className="landing-logo"
         />

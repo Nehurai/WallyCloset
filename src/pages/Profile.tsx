@@ -7,12 +7,21 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 // import React from "react";
 
+interface ProfileData {
+  name: string;
+  email: string;
+  bio: string;
+  avatar: string;
+  address: string;
+  language: string;
+}
+
 export default function Profile() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
-  const [profile, setProfile] = useState({
+  const [profile, setProfile] = useState<ProfileData>({
     name: "Neha Rai",
     email: user?.email || "",
     bio: "Fashion-forward, sustainability lover 👗🌿",
@@ -27,7 +36,10 @@ export default function Profile() {
         const ref = doc(db, "users", user.uid);
         const snapshot = await getDoc(ref);
         if (snapshot.exists()) {
-          setProfile(snapshot.data() as any);
+          setProfile((current) => ({
+            ...current,
+            ...(snapshot.data() as Partial<ProfileData>),
+          }));
         }
       }
     }
@@ -96,7 +108,7 @@ export default function Profile() {
 
       {/* Menu */}
       <div className="profile-menu">
-        <Link to="/my-swaps">My Swaps</Link>
+        <Link to="/myswaps">My Swaps</Link>
         <Link to="/wishlist">Wishlist</Link>
         <Link to="/coupons">Coupons</Link>
         <p>Address: {profile.address}</p>
@@ -111,7 +123,7 @@ export default function Profile() {
         <Link to="/home">Home</Link>
         <Link to="/closet">Closet</Link>
         <Link to="/swap">Swap</Link>
-        <Link to="/my-swaps">My Swaps</Link>
+        <Link to="/myswaps">My Swaps</Link>
         <Link to="/profile" className="active">
           Profile
         </Link>

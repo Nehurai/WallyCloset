@@ -1,28 +1,66 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useClothing } from "../context/ClothingContext";
+import { useClothing, type ClothingItem } from "../context/ClothingContext";
 import ClothingModal from "../components/ClothingModal";
+import { getRecommendations, getSmartSuggestions } from "../utils/recommendations";
 import "../styles/ClosetGallery.css";
 
-interface ClothingItem {
-  id: number;
-  name: string;
-  image: string;
-  category?: string;
-  date?: string;
-}
-
 const categories = ["All", "Tops", "Bottoms", "Dresses", "Winter"];
+
+const demoClothes: ClothingItem[] = [
+  {
+    id: 9001,
+    name: "Blue Casual Shirt",
+    image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=600&q=80",
+    category: "Tops",
+    color: "Blue",
+    tags: ["casual", "cotton", "daily"],
+    date: new Date().toISOString(),
+  },
+  {
+    id: 9002,
+    name: "Black Denim Jeans",
+    image: "https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=600&q=80",
+    category: "Bottoms",
+    color: "Black",
+    tags: ["casual", "denim", "daily"],
+    date: new Date().toISOString(),
+  },
+  {
+    id: 9003,
+    name: "White Party Top",
+    image: "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=600&q=80",
+    category: "Tops",
+    color: "White",
+    tags: ["party", "evening", "light"],
+    date: new Date().toISOString(),
+  },
+  {
+    id: 9004,
+    name: "Green Winter Jacket",
+    image: "https://images.unsplash.com/photo-1548883354-7622d03aca27?auto=format&fit=crop&w=600&q=80",
+    category: "Winter",
+    color: "Green",
+    tags: ["winter", "casual", "layering"],
+    date: new Date().toISOString(),
+  },
+];
+
+const normalize = (value = "") => value.trim().toLowerCase();
 
 export default function ClosetGallery() {
   const { clothes } = useClothing();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [modalItem, setModalItem] = useState<ClothingItem | null>(null);
+  const visibleClothes = clothes.length > 0 ? clothes : demoClothes;
+  const isDemoMode = clothes.length === 0;
+  const smartSuggestions = getSmartSuggestions(visibleClothes);
 
-  const filteredClothes = clothes.filter((item: ClothingItem) => {
-    const matchesCategory = selectedCategory === "All" || item.category === selectedCategory;
-    const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredClothes = visibleClothes.filter((item: ClothingItem) => {
+    const matchesCategory =
+      selectedCategory === "All" || normalize(item.category) === normalize(selectedCategory);
+    const matchesSearch = normalize(item.name).includes(normalize(searchTerm));
     return matchesCategory && matchesSearch;
   });
 
@@ -64,6 +102,51 @@ export default function ClosetGallery() {
         ))}
       </div>
 
+      <section className="recommendation-panel" aria-labelledby="recommendation-title">
+        <div>
+          <p className="recommendation-kicker">Content-based filtering</p>
+          <h3 id="recommendation-title">Smart outfit and swap suggestions</h3>
+          <p>
+            Items are converted into feature vectors using category, color, and
+            tags, then ranked with similarity matching.
+          </p>
+          {isDemoMode && (
+            <p className="demo-note">
+              Demo closet loaded so the recommendation model is visible before upload.
+            </p>
+          )}
+        </div>
+
+        {smartSuggestions.length > 0 ? (
+          <div className="recommendation-grid">
+            {smartSuggestions.map((suggestion) => (
+              <button
+                className="recommendation-card"
+                key={`${suggestion.baseItem.id}-${suggestion.item.id}`}
+                type="button"
+                onClick={() => setModalItem(suggestion.baseItem)}
+              >
+                <span className="recommendation-score">
+                  {Math.round(suggestion.score * 100)}% match
+                </span>
+                <div className="recommendation-pair">
+                  <img src={suggestion.baseItem.image} alt={suggestion.baseItem.name} />
+                  <img src={suggestion.item.image} alt={suggestion.item.name} />
+                </div>
+                <strong>
+                  {suggestion.baseItem.name} + {suggestion.item.name}
+                </strong>
+                <small>{suggestion.reasons.join(", ")}</small>
+              </button>
+            ))}
+          </div>
+        ) : (
+          <p className="recommendation-empty">
+            Add color and tags while uploading items to unlock smarter recommendations.
+          </p>
+        )}
+      </section>
+
       {filteredClothes.length === 0 ? (
         <p className="no-results">No items found. Try a different search or category.</p>
       ) : (
@@ -97,11 +180,18 @@ export default function ClosetGallery() {
         <Link to="/home">Home</Link>
         <Link to="/closet" className="active">Closet</Link>
         <Link to="/swap">Swap</Link>
-        <Link to="/my-swaps">My Swaps</Link>
+        <Link to="/myswaps">My Swaps</Link>
         <Link to="/profile">Profile</Link>
       </div>
 
-      {modalItem && <ClothingModal item={modalItem} onClose={closeModal} />}
+      {modalItem && (
+        <ClothingModal
+          item={modalItem}
+          onClose={closeModal}
+          recommendations={getRecommendations(modalItem, visibleClothes)}
+          onSelectRecommendation={setModalItem}
+        />
+      )}
     </div>
   );
 }

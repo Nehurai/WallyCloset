@@ -55,6 +55,104 @@
   color: white;
 }
 
+.recommendation-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.75fr) minmax(280px, 1.25fr);
+  gap: 18px;
+  align-items: stretch;
+  margin: 18px 0 24px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #dbe4ea;
+  border-radius: 8px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+}
+
+.recommendation-kicker {
+  margin: 0 0 6px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.recommendation-panel h3 {
+  margin: 0 0 8px;
+  color: #111827;
+  font-size: 22px;
+}
+
+.recommendation-panel p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.recommendation-panel .demo-note {
+  margin-top: 10px;
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.recommendation-card {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  text-align: left;
+  background: #f8fafc;
+  border: 1px solid #dbe4ea;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.recommendation-card:hover {
+  border-color: #0f766e;
+}
+
+.recommendation-score {
+  justify-self: start;
+  padding: 4px 8px;
+  color: #0f766e;
+  background: #ccfbf1;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.recommendation-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.recommendation-pair img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.recommendation-card strong {
+  color: #111827;
+  font-size: 14px;
+}
+
+.recommendation-card small,
+.recommendation-empty {
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
 /* Grid */
 .closet-grid {
   display: grid;
@@ -140,4 +238,11 @@
 .closet-nav a.active {
   color: #1d4ed8;
   font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .recommendation-panel {
+    grid-template-columns: 1fr;
+    padding: 16px;
+  }
 }

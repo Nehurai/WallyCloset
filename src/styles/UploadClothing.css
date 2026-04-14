@@ -5,8 +5,33 @@
 }
 
 .upload-form input,
+.upload-form textarea,
 .upload-form button {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
+}
+
+.upload-form textarea {
+  min-height: 110px;
+  resize: vertical;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.ai-description-btn {
+  background: #0f766e;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ai-description-btn:disabled,
+.upload-form button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }

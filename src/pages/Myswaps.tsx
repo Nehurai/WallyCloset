@@ -1,5 +1,5 @@
 import { useSwap } from "../context/SwapContext";
-import "../styles/MySwaps.css";
+import "../styles/Myswaps.css";
 
 interface SwapItem {
   id: number;

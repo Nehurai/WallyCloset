@@ -175,3 +175,226 @@
   color: #1d4ed8;
   font-weight: 600;
 }
+
+.clothing-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.55);
+}
+
+.clothing-modal-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.95fr) minmax(260px, 1.05fr);
+  width: min(860px, 100%);
+  max-height: min(720px, 92vh);
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.clothing-modal-media {
+  min-height: 360px;
+  background: #eef2f7;
+}
+
+.clothing-modal-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.clothing-modal-details {
+  padding: 34px;
+  overflow-y: auto;
+}
+
+.clothing-modal-kicker {
+  margin: 0 0 8px;
+  color: #0f766e;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.clothing-modal-details h3 {
+  margin: 0 0 18px;
+  color: #111827;
+  font-size: 28px;
+  line-height: 1.15;
+}
+
+.clothing-modal-meta {
+  display: grid;
+  gap: 10px;
+  margin: 0 0 20px;
+}
+
+.clothing-modal-meta-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.clothing-modal-meta-row dt {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.clothing-modal-meta-row dd {
+  margin: 0;
+  color: #111827;
+  font-weight: 700;
+  text-align: right;
+}
+
+.clothing-modal-notes {
+  margin: 0 0 22px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.feature-vector-panel {
+  margin-bottom: 22px;
+  padding: 12px;
+  background: #f8fafc;
+  border: 1px solid #dbe4ea;
+  border-radius: 8px;
+}
+
+.feature-vector-panel span {
+  display: block;
+  margin-bottom: 6px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.feature-vector-panel p {
+  margin: 0;
+  color: #374151;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.modal-recommendations {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.modal-recommendations h4 {
+  margin: 0;
+  color: #111827;
+  font-size: 16px;
+}
+
+.modal-recommendation {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
+  text-align: left;
+  background: #ffffff;
+  border: 1px solid #dbe4ea;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.modal-recommendation:hover {
+  border-color: #0f766e;
+}
+
+.modal-recommendation img {
+  width: 54px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.modal-recommendation span {
+  display: grid;
+  gap: 3px;
+}
+
+.modal-recommendation strong {
+  color: #111827;
+  font-size: 14px;
+}
+
+.modal-recommendation small {
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.clothing-modal-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.swap-request-btn,
+.modal-secondary-btn {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.swap-request-btn {
+  border: 1px solid #0f766e;
+  background: #0f766e;
+  color: #ffffff;
+}
+
+.modal-secondary-btn {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151;
+}
+
+@media (max-width: 720px) {
+  .clothing-modal-content {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .clothing-modal-media {
+    min-height: 260px;
+  }
+
+  .clothing-modal-details {
+    padding: 24px;
+  }
+}

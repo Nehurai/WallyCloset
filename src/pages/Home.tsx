@@ -33,7 +33,7 @@ export default function Home() {
           <p>Save your favorites</p>
         </Link>
 
-        <Link to="/my-swaps" className="home-card">
+        <Link to="/myswaps" className="home-card">
           <h3>📦 MY SWAPS</h3>
           <p>Track swap status</p>
         </Link>

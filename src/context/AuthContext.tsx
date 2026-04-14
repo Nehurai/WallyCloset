@@ -33,6 +33,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Hook to use auth context
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const context = useContext(AuthContext);
   if (!context) throw new Error("useAuth must be used within AuthProvider");
@@ -44,13 +45,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const signup = async (email: string, password: string) =>{
+  const signup = async (email: string, password: string) => {
     return await createUserWithEmailAndPassword(auth, email, password);
-  }
+  };
   const login = async (email: string, password: string) => {
     return await signInWithEmailAndPassword(auth, email, password);
   };
-  const logout = async() => {await signOut(auth);};
+  const logout = async () => {
+    await signOut(auth);
+  };
 
 
   const googleLogin = async () => {
@@ -70,7 +73,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         createdAt: new Date(),
       });
     }
-  }
+  };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);

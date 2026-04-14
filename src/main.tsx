@@ -1,10 +1,12 @@
 import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { ClothingProvider } from "./context/ClothingContext";
 import { SwapProvider } from "./context/SwapContext";
 import { AuthProvider } from "./context/AuthContext";
+import "./index.css";
 
 // Lazy load your pages
 const Landing = lazy(() => import("./pages/Landing"));
@@ -25,7 +27,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ClothingProvider>
         <SwapProvider>
           <BrowserRouter>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Toaster position="top-center" />
+            <Suspense fallback={<div className="centered">Loading...</div>}>
               <Routes>
                 <Route path="/" element={<Landing />} />
                 <Route path="/login" element={<Login />} />
@@ -35,9 +38,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 <Route path="/upload" element={<ProtectedRoute><UploadClothing /></ProtectedRoute>} />
                 <Route path="/swap" element={<ProtectedRoute><Swap /></ProtectedRoute>} />
                 <Route path="/myswaps" element={<ProtectedRoute><MySwaps /></ProtectedRoute>} />
+                <Route path="/my-swaps" element={<ProtectedRoute><MySwaps /></ProtectedRoute>} />
                 <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-                <Route path="/wishlist" element={<Wishlist />} />
-                <Route path="/coupons" element={<Coupons />} />
+                <Route path="/wishlist" element={<ProtectedRoute><Wishlist /></ProtectedRoute>} />
+                <Route path="/coupons" element={<ProtectedRoute><Coupons /></ProtectedRoute>} />
+                <Route path="*" element={<Landing />} />
               </Routes>
             </Suspense>
           </BrowserRouter>

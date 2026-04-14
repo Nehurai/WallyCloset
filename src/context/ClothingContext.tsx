@@ -4,7 +4,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import type {ReactNode} from 'react';
+import type { ReactNode } from "react";
 
 import {
   doc,
@@ -22,6 +22,11 @@ export interface ClothingItem {
   image: string;
   category: string;
   date: string;
+  color?: string;
+  tags?: string[];
+  size?: string;
+  condition?: string;
+  notes?: string;
 }
 
 interface ClothingContextType {
@@ -33,6 +38,7 @@ interface ClothingContextType {
 const ClothingContext = createContext<ClothingContextType>({} as ClothingContextType);
 
 // Hook to use context
+// eslint-disable-next-line react-refresh/only-export-components
 export const useClothing = () => useContext(ClothingContext);
 
 // Provider
@@ -44,18 +50,29 @@ export function ClothingProvider({ children }: { children: ReactNode }) {
     if (!user) return;
 
     const docRef = doc(db, "closets", user.uid);
-    const unsub = onSnapshot(docRef, (docSnap) => {
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        setClothes(data.items || []);
+    const unsub = onSnapshot(
+      docRef,
+      (docSnap) => {
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setClothes(data.items || []);
+        } else {
+          setClothes([]);
+        }
+      },
+      (error) => {
+        console.error("Could not load closet items", error);
+        setClothes([]);
       }
-    });
+    );
 
     return () => unsub();
   }, [user]);
 
   const addClothing = async (item: ClothingItem) => {
-    if (!user) return;
+    if (!user) {
+      throw new Error("You must be logged in to upload clothing.");
+    }
 
     const docRef = doc(db, "closets", user.uid);
     const docSnap = await getDoc(docRef);
